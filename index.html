@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Fire Panel</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #182b45, #05070c 70%);
+  color: white;
+}
+
+.panel {
+  width: 340px;
+  padding: 25px;
+  border: 1px solid #36d9ff;
+  border-radius: 22px;
+  background: rgba(8, 15, 27, .95);
+  box-shadow: 0 0 30px #1599ff66;
+}
+
+h1 {
+  text-align: center;
+  margin: 0 0 8px;
+  color: #45dcff;
+  text-shadow: 0 0 12px #00bfff;
+}
+
+.subtitle {
+  text-align: center;
+  color: #9db7c9;
+  margin-bottom: 25px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  margin-bottom: 15px;
+  border-radius: 14px;
+  background: #101d2d;
+  border: 1px solid #24445c;
+}
+
+.feature span {
+  font-weight: bold;
+}
+
+.toggle {
+  width: 54px;
+  height: 28px;
+  border: 0;
+  border-radius: 20px;
+  background: #344555;
+  cursor: pointer;
+  position: relative;
+}
+
+.toggle::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  top: 3px;
+  left: 4px;
+  border-radius: 50%;
+  background: white;
+  transition: .25s;
+}
+
+.toggle.active {
+  background: #00c8ff;
+  box-shadow: 0 0 15px #00c8ff;
+}
+
+.toggle.active::after {
+  left: 28px;
+}
+
+button.open {
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #00aaff, #00e5ff);
+  color: #00121b;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 20px #00c8ff66;
+}
+
+.status {
+  text-align: center;
+  margin-top: 18px;
+  color: #7f9aaa;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="panel">
+  <h1>FREE FIRE</h1>
+  <div class="subtitle">GAMER PANEL</div>
+
+  <div class="feature">
+    <span>🧊 Gelo Invertido</span>
+    <button class="toggle" id="gelo"></button>
+  </div>
+
+  <button class="open" onclick="abrirJogo()">
+    🎮 ABRIR JOGO
+  </button>
+
+  <div class="status" id="status">
+    Status: aguardando...
+  </div>
+</div>
+
+<script>
+const gelo = document.getElementById("gelo");
+const status = document.getElementById("status");
+
+gelo.addEventListener("click", () => {
+  gelo.classList.toggle("active");
+
+  if (gelo.classList.contains("active")) {
+    status.textContent = "Status: Gelo Invertido ativado (visual)";
+  } else {
+    status.textContent = "Status: Gelo Invertido desativado";
+  }
+});
+
+function abrirJogo() {
+  // Tenta abrir o aplicativo usando o esquema de URL.
+  // O Android só abrirá se esse esquema estiver disponível.
+  window.location.href = "freefire://";
+
+  setTimeout(() => {
+    status.textContent = "Tentando abrir o Free Fire...";
+  }, 300);
+}
+</script>
+
+</body>
+</html>
